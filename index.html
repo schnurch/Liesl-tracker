@@ -19,19 +19,12 @@
     <div id="root"></div>
     
     <script type="text/babel">
-        const { useState } = React;
+        const { useState, useEffect } = React;
         
         // Lucide React icons as simple SVG components
         const Plus = ({ size = 16 }) => (
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 5v14M5 12h14"/>
-            </svg>
-        const Calendar = ({ size = 16 }) => (
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                <line x1="16" y1="2" x2="16" y2="6"/>
-                <line x1="8" y1="2" x2="8" y2="6"/>
-                <line x1="3" y1="10" x2="21" y2="10"/>
             </svg>
         );
         
@@ -74,6 +67,15 @@
             </svg>
         );
 
+        const Calendar = ({ size = 16 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+        );
+
         const Trash2 = ({ size = 16 }) => (
             <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
@@ -107,7 +109,7 @@
             const [showHistory, setShowHistory] = useState(false);
 
             // Auto-save tasks whenever they change
-            React.useEffect(() => {
+            useEffect(() => {
                 try {
                     localStorage.setItem('liesl-tasks', JSON.stringify(tasks));
                 } catch (error) {
@@ -116,7 +118,7 @@
             }, [tasks]);
 
             // Auto-save daily records whenever they change
-            React.useEffect(() => {
+            useEffect(() => {
                 try {
                     localStorage.setItem('liesl-daily-records', JSON.stringify(dailyRecords));
                 } catch (error) {
